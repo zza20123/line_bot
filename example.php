@@ -17,53 +17,50 @@ $adminId       = 'U39f72c...........0d6ddf';
 
 if (empty($_REQUEST['action'])) {
 
-	$bot = new BOT_API($channelSecret, $access_token);
+    $bot = new BOT_API($channelSecret, $access_token);
 	
-	if (!empty($bot->isEvents)) {
+    if (!empty($bot->isEvents)) {
 
-		/*
+        if (!empty($bot->isText)) {
 
-		if (!empty($bot->isText)) {
+            if ($bot->text == 'get_user_id:') {
+                $bot->replyMessageNew($bot->replyToken, $bot->source->userId);
+            }
 
-			if ($bot->text == 'get_user_id:') {
-				$bot->replyMessageNew($bot->replyToken, $bot->source->userId);
-			}
+            if ($bot->text == 'get_message:') {
+                $bot->replyMessageNew($bot->replyToken, json_encode($bot->message));
+            }
 
-			if ($bot->text == 'get_message:') {
-				$bot->replyMessageNew($bot->replyToken, json_encode($bot->message));
-			}
-
-			if ($bot->text == 'get_status:') {
-				$bot->replyMessageNew($bot->replyToken, '200: OK.');
-			}
+            if ($bot->text == 'get_status:') {
+                $bot->replyMessageNew($bot->replyToken, '200: OK.');
+            }
 			
-			$bot->replyMessageNew($bot->replyToken, json_encode($bot->message));
+            $bot->replyMessageNew($bot->replyToken, json_encode($bot->message));
 
-		}
+        }
 
-		if (!empty($bot->isImage)) {
-			$bot->replyMessageNew($bot->replyToken, json_encode($bot->message));
-		}
+        if (!empty($bot->isImage)) {
+            $bot->replyMessageNew($bot->replyToken, json_encode($bot->message));
+        }
 
-		if (!empty($bot->isSticker)) {
-			$bot->replyMessageNew($bot->replyToken, json_encode($bot->message));
-		}
-		*/
+        if (!empty($bot->isSticker)) {
+            $bot->replyMessageNew($bot->replyToken, json_encode($bot->message));
+        }
 		
-		$bot->replyMessageNew($bot->replyToken, json_encode($bot->message));
+        $bot->replyMessageNew($bot->replyToken, json_encode($bot->message));
 
-		if ($bot->isSuccess()) {
+        if ($bot->isSuccess()) {
 
-			echo 'Succeeded!';
-			exit();
+            echo 'Succeeded!';
+            exit();
 
-		}
+        }
 
-		// Failed
-		echo $bot->response->getHTTPStatus . ' ' . $bot->response->getRawBody(); 
-		exit();
+        // Failed
+        echo $bot->response->getHTTPStatus . ' ' . $bot->response->getRawBody(); 
+        exit();
 
-	}
+    }
 
 }
 
@@ -73,32 +70,32 @@ if (empty($_REQUEST['action'])) {
 
 else if (!empty($_REQUEST['action'])) {
 	
-	$bot = new BOT_API($channelSecret, $access_token);
+    $bot = new BOT_API($channelSecret, $access_token);
 	
-	if ($_REQUEST['action'] == 'verify') {
+    if ($_REQUEST['action'] == 'verify') {
 
-		$bot->pushMessageToAdmin("\"SUCCESS\":\n" . json_encode(BOT_API::verify()));
-		return;
+        $bot->pushMessageToAdmin("\"SUCCESS\":\n" . json_encode(BOT_API::verify()));
+        return;
 
-	}
+    }
 	
-	if ($_REQUEST['action'] == 'status') {
+    if ($_REQUEST['action'] == 'status') {
 
-		$bot->pushMessageToAdmin('200: OK.');
-		return;
+        $bot->pushMessageToAdmin('200: OK.');
+        return;
 
-	}
+    }
 	
-	if ($bot->isSuccess()) {
+    if ($bot->isSuccess()) {
 
-		echo 'Succeeded!';
-		exit();
+        echo 'Succeeded!';
+        exit();
 
-	}
+    }
 
-	// Failed
-	echo $bot->response->getHTTPStatus . ' ' . $bot->response->getRawBody(); 
-	exit();
+    // Failed
+    echo $bot->response->getHTTPStatus . ' ' . $bot->response->getRawBody(); 
+    exit();
 
 }
 
