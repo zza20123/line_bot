@@ -98,9 +98,7 @@ class BOT_API extends LINEBot {
     }
 	
     public function isSuccess () {
-
         return !empty($this->response->isSucceeded()) ? true : false;
-		
     }
 	
     public static function verify ($access_token) {
