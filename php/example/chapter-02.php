@@ -10,8 +10,8 @@ $bot = new BOT_API($channelSecret, $access_token);
 $bot->sendMessageNew('U39f72cc.....d460d6ddf', 'Hello World !!');
 
 if ($bot->isSuccess()) {
-	echo 'Succeeded!';
-	exit();
+    echo 'Succeeded!';
+    exit();
 }
 
 // Failed
