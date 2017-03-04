@@ -41,7 +41,7 @@ class BOT_API extends LINEBot {
     public function __construct ($channelSecret, $access_token) {
 		
         $this->httpClient     = new CurlHTTPClient($access_token);
-        $this->$channelSecret = $channelSecret;
+        $this->channelSecret  = $channelSecret;
         $this->endpointBase   = LINEBot::DEFAULT_ENDPOINT_BASE;
 		
         $this->content        = file_get_contents('php://input');
