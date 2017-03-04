@@ -80,7 +80,7 @@ class BOT_API extends LINEBot {
 		
     }
 	
-    public function pushMessageToAdmin ($to, $message = null) {
+    public function sendMessageNew ($to = null, $message = null) {
         $messageBuilder = new TextMessageBuilder($message);
         $this->response = $this->httpClient->post($this->endpointBase . '/v2/bot/message/push', [
             'to' => $to,
