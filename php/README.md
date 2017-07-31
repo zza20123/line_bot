@@ -1,1 +1,2 @@
-# line-bot-api
+# Installation
+composer require linecorp/line-bot-sdk
